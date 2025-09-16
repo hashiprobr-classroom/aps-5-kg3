@@ -20,5 +20,7 @@ public abstract class Prompt {
     }
     // a implementação do método deve ser definida em subclasses, então usamos abstract
     public abstract double calculaPreco();
+
+
 }
 
