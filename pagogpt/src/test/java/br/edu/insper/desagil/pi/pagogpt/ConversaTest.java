@@ -41,7 +41,7 @@ public class ConversaTest {
         c.adicionarPrompt(new Prompt(20.5));
         c.adicionarPrompt(new Prompt(5.25));
 
-        double esperado = 35.75 / 3.0; 
+        double esperado = 35.75 / 3.0;
         assertEquals(esperado, c.mediaPrecos(), 0.01);
     }
 }
