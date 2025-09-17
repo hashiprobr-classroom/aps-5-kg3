@@ -3,19 +3,16 @@ package br.edu.insper.desagil.pi.cobasi;
 import java.time.LocalDate;
 
 public class Historico {
-    private String nomeTutor;
-    private String enderecoTutor;
-    private String telefoneTutor;
+    private Tutor tutor;
     private String nome;
     private int tipo;
     private LocalDate dataNascimento;
     private double peso;
     private String extra;
 
-    public Historico(String nomeTutor, String nome, int tipo, LocalDate dataNascimento, double peso, String extra) {
-        this.nomeTutor = nomeTutor;
-        this.enderecoTutor = null;
-        this.telefoneTutor = null;
+    // novo construtor q usa Tutor
+    public Historico(Tutor tutor, String nome, int tipo, LocalDate dataNascimento, double peso, String extra) {
+        this.tutor = tutor;
         this.nome = nome;
         this.tipo = tipo;
         this.dataNascimento = dataNascimento;
@@ -23,23 +20,27 @@ public class Historico {
         this.extra = extra;
     }
 
+    @Deprecated
+    public Historico(String nomeTutor, String nome, int tipo, LocalDate dataNascimento, double peso, String extra){
+        this(new Tutor(nomeTutor), nome, tipo, dataNascimento, peso, extra);
+    }
+
+    // novo
+    public Tutor getTutor(){return tutor;}
+
+    @Deprecated
     public void setEnderecoTutor(String enderecoTutor) {
-        this.enderecoTutor = enderecoTutor;
+        this.tutor.setEndereco(enderecoTutor);
     }
 
+    @Deprecated
     public void setTelefoneTutor(String telefoneTutor) {
-        this.telefoneTutor = telefoneTutor;
+        this.tutor.setTelefone(telefoneTutor);
     }
 
+    @Deprecated
     public String resumoTutor() {
-        String summary = "Tutor: " + nomeTutor + "\n";
-        if (enderecoTutor != null) {
-            summary += "Endereço: " + enderecoTutor + "\n";
-        }
-        if (telefoneTutor != null) {
-            summary += "Telefone: " + telefoneTutor + "\n";
-        }
-        return summary;
+        return tutor.resumo();
     }
 
     public String resumo() {
@@ -63,4 +64,6 @@ public class Historico {
         }
         return summary;
     }
+
+
 }

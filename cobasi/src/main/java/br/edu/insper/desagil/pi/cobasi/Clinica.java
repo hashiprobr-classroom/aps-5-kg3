@@ -16,18 +16,18 @@ public class Clinica {
     }
 
     public void addHistoricoCachorro(String nomeTutor, String nome, LocalDate dataNascimento, double peso, String tipoBanho) {
-        historicos.add(new Historico(nomeTutor, nome, 0, dataNascimento, peso, tipoBanho));
+        historicos.add(new Historico(new Tutor(nomeTutor), nome, 0, dataNascimento, peso, tipoBanho));
     }
 
     public void addHistoricoGato(String nomeTutor, String nome, LocalDate dataNascimento, double peso, String doenca) {
-        historicos.add(new Historico(nomeTutor, nome, 1, dataNascimento, peso, doenca));
+        historicos.add(new Historico(new Tutor(nomeTutor), nome, 1, dataNascimento, peso, doenca));
     }
 
     public void addHistoricoCobra(String nomeTutor, String nome, LocalDate dataNascimento, double peso, boolean venenosa) {
-        historicos.add(new Historico(nomeTutor, nome, 2, dataNascimento, peso, Boolean.toString(venenosa)));
+        historicos.add(new Historico(new Tutor(nomeTutor), nome, 2, dataNascimento, peso, Boolean.toString(venenosa)));
     }
 
     public void addHistoricoElefante(String nomeTutor, String nome, LocalDate dataNascimento, double peso, int pesoComida) {
-        historicos.add(new Historico(nomeTutor, nome, 3, dataNascimento, peso, Integer.toString(pesoComida)));
+        historicos.add(new Historico(new Tutor(nomeTutor), nome, 3, dataNascimento, peso, Integer.toString(pesoComida)));
     }
 }
