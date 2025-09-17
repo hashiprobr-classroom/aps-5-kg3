@@ -10,17 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CobradorTest {
 
+    public static final double DELTA = 0.01;
+
     private Conversa conv(String email, double... precos) {
-        Conversa c = new Conversa(new Usuario(email));
-        for (double p : precos) c.adicionarPrompt(new Prompt(p));
+        Conversa c = new Conversa(new Usuario(email, "Gabi"));
+        for (double p : precos) c.adicionarPrompt(new PromptPago("x", p));
         return c;
     }
 
     @Test
     void nenhumaValida() {
         Cobrador cobrador = new Cobrador(new ArrayList<>());
-        double total = cobrador.totalDoUsuario(new Usuario("gabi@mail.com"));
-        assertEquals(0.0, total, 0.01);
+        double total = cobrador.totalDoUsuario(new Usuario("gabi@mail.com", "Gabi"));
+        assertEquals(0.0, total, DELTA);
     }
 
     @Test
@@ -32,19 +34,19 @@ public class CobradorTest {
         );
         Cobrador cobrador = new Cobrador(conversas);
         double esperado = 10.0 + 2.5 + 0.75;
-        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("agabi@mail.com")), 0.01);
+        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("gabi@mail.com", "Gabi")), DELTA);
     }
 
     @Test
     void duasValidas() {
         List<Conversa> conversas = Arrays.asList(
-                conv("ALVO@mail.com", 10.0),
+                conv("gabi@mail.com", 10.0),
                 conv("kai@x.com", 5.0),
                 conv("gabi@mail.com", 2.5, 7.25)
         );
         Cobrador cobrador = new Cobrador(conversas);
         double esperado = 10.0 + 2.5 + 7.25;
-        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("gabi@mail.com")), 0.01);
+        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("gabi@mail.com", "Gabi")), DELTA);
     }
 
     @Test
@@ -56,6 +58,6 @@ public class CobradorTest {
         );
         Cobrador cobrador = new Cobrador(conversas);
         double esperado = 1.0 + 2.0 + 0.5 + 4.25;
-        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("oi@u.com")), 0.01);
+        assertEquals(esperado, cobrador.totalDoUsuario(new Usuario("oi@u.com", "Oi")), DELTA);
     }
 }
