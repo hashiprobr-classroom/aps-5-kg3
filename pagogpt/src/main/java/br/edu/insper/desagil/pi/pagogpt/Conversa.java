@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Conversa {
 
-    private final String usuario;
-    private final List<Prompt> prompts;
+    private Usuario usuario;
+    private List<Prompt> prompts;
 
-    public Conversa(String usuario) {
+    public Conversa(Usuario usuario) {
         this.usuario = usuario;
         this.prompts = new ArrayList<>();
     }
 
-    public String getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
@@ -24,7 +24,7 @@ public class Conversa {
     public double somaPrecos() {
         double soma = 0.0;
         for (Prompt p : prompts) {
-            soma += p.getPreco();
+            soma += p.calculaPreco();
         }
         return soma;
     }

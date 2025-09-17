@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Cobrador {
 
-    private final List<Conversa> conversas; /
+    private List<Conversa> conversas;
 
     public Cobrador(List<Conversa> conversas) {
         this.conversas = conversas;
